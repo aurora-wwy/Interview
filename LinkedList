@@ -1,0 +1,38 @@
+typedef struct LinkedListNode
+{
+    int value;
+    struct LinkedListNode *next;
+}*LinkedList;
+
+LinkedList CreateLinkedList()
+{
+    LinkedListNode* newNode = (LinkedListNode*)malloc(sizeof(LinkedListNode));
+    if (newNode != NULL)
+    {
+        newNode->value = 0;
+        newNode->next = NULL;
+        return newNode;
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
+void ReverseLinkedList(Node **head){
+    if (*head == nullptr || *head->next == nullptr) return;
+    Node *rest = *head->next;
+    *head->next = nullptr;
+    reverseLinkedList(&rest);
+    rest->next = head;
+    *head = rest;
+}
+
+void DestoryLinkedList(LinkedList L)
+{
+    for (LinkedListNode* temp = L; L!= NULL; temp = L)
+    {
+        L = L->next;
+        free(temp);
+    }
+}
